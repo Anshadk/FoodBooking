@@ -1,0 +1,377 @@
+// import * as React from "react";
+// import { useEffect, useState } from "react";
+// import "@pnp/sp/webs";
+// import "@pnp/sp/lists/web";
+// import "@pnp/sp/lists";
+// import "@pnp/sp/items";
+// import { getSP } from "../../../pnpConfigFile";
+
+// interface ListItem {
+//   Id: number;
+//   Title: string;       // Dish name
+//   Price: number;
+//   Category: string;    // e.g., Starters, Main Course, Desserts
+//   FoodType: string;    // e.g., Veg, Non-Veg
+// }
+
+// interface MenuListDisplayProps {
+//   listName: string;
+// }
+
+// const MenuListDisplay: React.FC<MenuListDisplayProps> = ({ listName }) => {
+//   const [items, setItems] = useState<ListItem[]>([]);
+//   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+//   const sp = getSP();
+
+//   const fetchItems = async (): Promise<void> => {
+//     try {
+//       setErrorMessage(null);
+//       const listItems: ListItem[] = await sp.web.lists
+//         .getByTitle(listName)
+//         .items.select("Id", "Title", "Price", "Category", "FoodType")();
+//       setItems(listItems);
+//     } catch (error) {
+//       setErrorMessage("Failed to fetch items. Please check the list name or your permissions.");
+//       console.error("Fetch Items Error: ", error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchItems().catch((error) => {
+//       setErrorMessage("Failed to fetch items. Please try again later.");
+//       console.error("Fetch Items Error: ", error);
+//     });
+//   }, []);
+
+//   return (
+//     <div style={{ padding: "20px", fontFamily: "Segoe UI, sans-serif" }}>
+//       <h2 style={{ textAlign: "center", marginBottom: "30px" }}>🍴 Today's Menu</h2>
+
+//       {errorMessage && (
+//         <div style={{ color: "red", marginBottom: "10px" }}>{errorMessage}</div>
+//       )}
+
+//       <table style={{ marginTop: "10px", width: "100%", borderCollapse: "collapse" }}>
+//         <thead>
+//           <tr style={{ backgroundColor: "#f2f2f2" }}>
+//             <th style={thStyle}>Dish Name</th>
+//             <th style={thStyle}>Category</th>
+//             <th style={thStyle}>Type</th>
+//             <th style={thStyle}>Price</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {items.length > 0 ? (
+//             items.map((item) => (
+//               <tr key={item.Id}>
+//                 <td style={tdStyle}>{item.Title}</td>
+//                 <td style={tdStyle}>{item.Category}</td>
+//                 <td style={tdStyle}>{item.FoodType}</td>
+//                 <td style={tdStyle}>{`₹ ${item.Price.toFixed(2)}`}</td>
+//               </tr>
+//             ))
+//           ) : (
+//             <tr>
+//               <td colSpan={4} style={tdStyle}>No menu items available today.</td>
+//             </tr>
+//           )}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// // 💅 Shared styles
+// const thStyle: React.CSSProperties = {
+//   padding: "10px",
+//   borderBottom: "2px solid #ccc",
+//   textAlign: "left",
+//   backgroundColor: "#f9f9f9",
+// };
+
+// const tdStyle: React.CSSProperties = {
+//   padding: "10px",
+//   borderBottom: "1px solid #eee",
+// };
+
+// export default MenuListDisplay;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import * as React from "react";
+// import { useEffect, useState } from "react";
+// import "@pnp/sp/webs";
+// import "@pnp/sp/lists/web";
+// import "@pnp/sp/lists";
+// import "@pnp/sp/items";
+// import { getSP } from "../../../pnpConfigFile";
+
+// interface ListItem {
+//   Id: number;
+//   Title: string;       
+//   Price: number;
+//   Category: string;    
+//   FoodType: string;    
+// }
+
+// interface SelectedItem extends ListItem {
+//   quantity: number;
+// }
+
+// interface MenuListDisplayProps {
+//   listName: string;
+//   bookingListName: string;
+//   currentUser: string | { email: string; displayName?: string };
+// }
+
+// const MenuListDisplay: React.FC<MenuListDisplayProps> = ({ 
+//   listName, 
+//   bookingListName,
+//   currentUser 
+// }) => {
+//   const [items, setItems] = useState<ListItem[]>([]);
+//   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
+//   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+//   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+//   const [isOrdering, setIsOrdering] = useState<boolean>(false);
+//   const [isLoading, setIsLoading] = useState<boolean>(false);
+//   const sp = getSP();
+
+//   const fetchItems = async (): Promise<void> => {
+//     try {
+//       setIsLoading(true);
+//       setErrorMessage(null);
+//       const listItems: ListItem[] = await sp.web.lists
+//         .getByTitle(listName)
+//         .items.select("Id", "Title", "Price", "Category", "FoodType")();
+//       const validItems = listItems.filter(item => item.Price > 0);
+//       setItems(validItems);
+//     } catch (error) {
+//       setErrorMessage("Failed to fetch items. Please check the list name or your permissions.");
+//       console.error("Fetch Items Error: ", error);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   const handleSelectItem = (item: ListItem) => {
+//     setSuccessMessage(null); // clear success msg on selection
+//     setSelectedItems(prevItems => {
+//       const existingItem = prevItems.find(i => i.Id === item.Id);
+//       if (existingItem) {
+//         return prevItems.map(i => 
+//           i.Id === item.Id ? { ...i, quantity: Number(i.quantity) + 1 } : i
+//         );
+//       } else {
+//         return [...prevItems, { ...item, quantity: 1 }];
+//       }
+//     });
+//   };
+
+//   const handleRemoveItem = (itemId: number) => {
+//     setSuccessMessage(null); // clear success msg on removal
+//     setSelectedItems(prevItems => {
+//       const existingItem = prevItems.find(i => i.Id === itemId);
+//       if (existingItem && existingItem.quantity > 1) {
+//         return prevItems.map(i => 
+//           i.Id === itemId ? { ...i, quantity: Number(i.quantity) - 1 } : i
+//         );
+//       } else {
+//         return prevItems.filter(i => i.Id !== itemId);
+//       }
+//     });
+//   };
+
+//   const placeOrder = async () => {
+//     if (selectedItems.length === 0) {
+//       setErrorMessage("Please select at least one item to place an order.");
+//       return;
+//     }
+
+//     setIsOrdering(true);
+//     setErrorMessage(null);
+//     setSuccessMessage(null);
+
+//     try {
+//       const userEmail = typeof currentUser === 'string' ? currentUser : currentUser.email;
+
+//       const bookingPromises = selectedItems.map(async (item) => {
+//         return await sp.web.lists.getByTitle(bookingListName).items.add({
+//           Title: `${item.Title} (${typeof currentUser === 'string' ? currentUser : currentUser.displayName || currentUser.email})`,
+//           FoodItemId: item.Id,
+//           Quantity: item.quantity,
+//           // BookingDate: new Date().toISOString(),
+//           Status: "Booked",
+//           UserEmailId: userEmail,
+//         });
+//       });
+
+//       await Promise.all(bookingPromises);
+//       setSuccessMessage(`Order placed successfully! ${selectedItems.length} item(s) booked.`);
+//       setSelectedItems([]);
+//     } catch (error) {
+//       setErrorMessage("Failed to place order. Please try again.");
+//       console.error("Order Error: ", error);
+//     } finally {
+//       setIsOrdering(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchItems();
+//   }, []);
+
+//   return (
+//     <div style={{ padding: "20px", fontFamily: "Segoe UI, sans-serif" }}>
+//    <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
+//   Welcome, {typeof currentUser === 'string' ? currentUser : currentUser.displayName || 'Guest'}!
+// </h1>
+//       <h2 style={{ textAlign: "center", marginBottom: "30px" }}>🍴 Today's Menu</h2>
+
+//       {errorMessage && (
+//         <div style={{ color: "red", marginBottom: "10px" }}>{errorMessage}</div>
+//       )}
+
+//       {successMessage && (
+//         <div style={{ color: "green", marginBottom: "10px" }}>{successMessage}</div>
+//       )}
+
+//       <table style={{ marginTop: "10px", width: "100%", borderCollapse: "collapse" }}>
+//         <thead>
+//           <tr style={{ backgroundColor: "#f2f2f2" }}>
+//             <th style={thStyle}>Dish Name</th>
+//             <th style={thStyle}>Category</th>
+//             <th style={thStyle}>Type</th>
+//             <th style={thStyle}>Price</th>
+//             <th style={thStyle}>Action</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {isLoading ? (
+//             <tr><td colSpan={5} style={tdStyle}>Loading menu...</td></tr>
+//           ) : items.length > 0 ? (
+//             items.map((item) => (
+//               <tr key={item.Id}>
+//                 <td style={tdStyle}>{item.Title}</td>
+//                 <td style={tdStyle}>{item.Category}</td>
+//                 <td style={tdStyle}>{item.FoodType}</td>
+//                 <td style={tdStyle}>{`₹ ${item.Price.toFixed(2)}`}</td>
+//                 <td style={tdStyle}>
+//                   <button 
+//                     type="button"
+//                     aria-label={`Add ${item.Title} to cart`}
+//                     onClick={() => handleSelectItem(item)}
+//                     style={buttonStyle}
+//                   >
+//                     Add
+//                   </button>
+//                 </td>
+//               </tr>
+//             ))
+//           ) : (
+//             <tr>
+//               <td colSpan={5} style={tdStyle}>No menu items available today.</td>
+//             </tr>
+//           )}
+//         </tbody>
+//       </table>
+
+//       {/* Selected Items Section */}
+//       {selectedItems.length > 0 && (
+//         <div style={{ marginTop: "40px" }}>
+//           <h3 style={{ marginBottom: "20px" }}>Your Order</h3>
+//           <table style={{ width: "100%", borderCollapse: "collapse" }}>
+//             <thead>
+//               <tr style={{ backgroundColor: "#f2f2f2" }}>
+//                 <th style={thStyle}>Item</th>
+//                 <th style={thStyle}>Quantity</th>
+//                 <th style={thStyle}>Price</th>
+//                 <th style={thStyle}>Subtotal</th>
+//                 <th style={thStyle}>Action</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {selectedItems.map((item) => (
+//                 <tr key={item.Id}>
+//                   <td style={tdStyle}>{item.Title}</td>
+//                   <td style={tdStyle}>{item.quantity}</td>
+//                   <td style={tdStyle}>{`₹ ${item.Price.toFixed(2)}`}</td>
+//                   <td style={tdStyle}>{`₹ ${(item.Price * item.quantity).toFixed(2)}`}</td>
+//                   <td style={tdStyle}>
+//                     <button 
+//                       type="button"
+//                       aria-label={`Remove ${item.Title}`}
+//                       onClick={() => handleRemoveItem(item.Id)}
+//                       style={{ ...buttonStyle, backgroundColor: "#ff6b6b" }}
+//                     >
+//                       Remove
+//                     </button>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+
+//           <div style={{ marginTop: "10px", fontWeight: "bold", textAlign: "right" }}>
+//             Total: ₹ {selectedItems.reduce((total, item) => total + item.Price * item.quantity, 0).toFixed(2)}
+//           </div>
+
+//           <div style={{ marginTop: "20px", textAlign: "right" }}>
+//             <button 
+//               type="button"
+//               onClick={placeOrder}
+//               disabled={isOrdering}
+//               style={{ 
+//                 ...buttonStyle, 
+//                 backgroundColor: "#4CAF50",
+//                 padding: "10px 20px",
+//                 fontSize: "16px"
+//               }}
+//             >
+//               {isOrdering ? "Placing Order..." : "Place Order"}
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// const thStyle: React.CSSProperties = {
+//   padding: "10px",
+//   borderBottom: "2px solid #ccc",
+//   textAlign: "left",
+//   backgroundColor: "#f9f9f9",
+// };
+
+// const tdStyle: React.CSSProperties = {
+//   padding: "10px",
+//   borderBottom: "1px solid #eee",
+// };
+
+// const buttonStyle: React.CSSProperties = {
+//   backgroundColor: "#4CAF50",
+//   color: "white",
+//   border: "none",
+//   padding: "5px 10px",
+//   borderRadius: "4px",
+//   cursor: "pointer",
+//   fontSize: "14px",
+// };
+
+// export default MenuListDisplay;

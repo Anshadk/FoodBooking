@@ -1,0 +1,18 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": false,
+    "nodeVersion": "18.20.4",
+    "sdksVersions": {},
+    "version": "1.20.0",
+    "libraryName": "webpart-1",
+    "libraryId": "134504f4-1c1f-459e-a699-6a455c77e107",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "webpart1",
+    "solutionShortDescription": "webpart1 description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

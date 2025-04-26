@@ -1,0 +1,99 @@
+/* MenuListDisplay.module.css */
+.container {
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .menuTitle {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .errorMessage {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .successMessage {
+    color: green;
+    margin-bottom: 10px;
+  }
+  
+  .table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tableHeader {
+    background-color: #f2f2f2;
+  }
+  
+  .tableHeaderCell {
+    padding: 10px;
+    border-bottom: 2px solid #ccc;
+    text-align: left;
+    background-color: #f9f9f9;
+  }
+  
+  .tableRow {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .tableData {
+    padding: 10px;
+  }
+  
+  .addButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .removeButton {
+    background-color: #ff6b6b;
+  }
+  
+  .orderSummary {
+    margin-top: 40px;
+  }
+  
+  .orderTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .orderTableHeader {
+    background-color: #f2f2f2;
+  }
+  
+  .orderTableCell {
+    padding: 10px;
+  }
+  
+  .totalPrice {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: right;
+  }
+  
+  .placeOrderButton {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .placeOrderButtonDisabled {
+    background-color: #4CAF50;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  

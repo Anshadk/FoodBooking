@@ -1,0 +1,135 @@
+.container {
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-sizing: border-box;
+  }
+  
+  .headerRow {
+    background-color: #f4f4f4;
+  }
+  
+  .th {
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .button {
+    padding: 6px 12px;
+    margin-left: 10px;
+    border: none;
+    background-color: #0078d4;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #005a8e;
+  }
+  
+  .errorText {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  /* Status badge */
+  .statusBadge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #fff;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .statusBadge:hover {
+    opacity: 0.8;
+  }
+  
+  /* Specific status colors */
+  .booked {
+    background-color: #0078d4;
+  }
+  
+  .ready {
+    background-color: #ffa500;
+  }
+  
+  .served {
+    background-color: #008000;
+  }
+  
+  .cancelled {
+    background-color: #dc3545;
+  }
+  
+  /* Default (unknown status) */
+  .default {
+    background-color: #6c757d;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .table {
+      font-size: 14px;
+    }
+  
+    .th,
+    .td {
+      padding: 8px;
+    }
+  
+    .button {
+      font-size: 12px;
+      padding: 5px 8px;
+    }
+  
+    .statusBadge {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  
+    .container {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .table {
+      font-size: 12px;
+    }
+  
+    .th,
+    .td {
+      padding: 6px;
+    }
+  
+    .button {
+      font-size: 10px;
+      padding: 4px 6px;
+    }
+  
+    .statusBadge {
+      font-size: 10px;
+      padding: 4px 6px;
+    }
+  
+    .container {
+      padding: 5px;
+    }
+  }
+  

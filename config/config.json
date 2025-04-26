@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "webpart-1-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/webpart1/Webpart1WebPart.js",
+          "manifest": "./src/webparts/webpart1/Webpart1WebPart.manifest.json"
+        }
+      ]
+    },
+    "react-webpart-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/reactWebpart/ReactWebpartWebPart.js",
+          "manifest": "./src/webparts/reactWebpart/ReactWebpartWebPart.manifest.json"
+        }
+      ]
+    },
+    "menu-display-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/menuDisplay/MenuDisplayWebPart.js",
+          "manifest": "./src/webparts/menuDisplay/MenuDisplayWebPart.manifest.json"
+        }
+      ]
+    },
+    "order-management-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/orderManagement/OrderManagementWebPart.js",
+          "manifest": "./src/webparts/orderManagement/OrderManagementWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "Webpart1WebPartStrings": "lib/webparts/webpart1/loc/{locale}.js",
+    "ReactWebpartWebPartStrings": "lib/webparts/reactWebpart/loc/{locale}.js",
+    "MenuDisplayWebPartStrings": "lib/webparts/menuDisplay/loc/{locale}.js",
+    "OrderManagementWebPartStrings": "lib/webparts/orderManagement/loc/{locale}.js"
+  }
+}
