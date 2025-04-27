@@ -132,4 +132,251 @@
       padding: 5px;
     }
   }
+  .cardGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-top: 20px;
+  }
   
+  .card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .statusBadge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .booked { background-color: #ff9800; }
+  .ready { background-color: #2196f3; }
+  .served { background-color: #4caf50; }
+  .cancelled { background-color: #f44336; }
+  .default { background-color: #9e9e9e; }
+  
+  .cardBody {
+    margin-top: 1rem;
+    font-size: 14px;
+  }
+  
+  .cardFooter {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+    align-items: center;
+  }
+  
+  .dropdown {
+    flex: 1;
+    padding: 5px;
+  }
+  
+  .button {
+    padding: 6px 12px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .button:hover {
+    background-color: #1976d2;
+  }
+  .container {
+    padding: 20px;
+  }
+  
+  .orderList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .orderCard {
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .orderHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .orderId {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .statusBadge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: white;
+    text-transform: capitalize;
+  }
+  
+  .booked {
+    background-color: #3498db;
+  }
+  .ready {
+    background-color: #f1c40f;
+  }
+  .served {
+    background-color: #2ecc71;
+  }
+  .cancelled {
+    background-color: #e74c3c;
+  }
+  .default {
+    background-color: gray;
+  }
+  
+  .orderDetails {
+    margin-bottom: 10px;
+  }
+  
+  .actionArea {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .button {
+    padding: 6px 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .button:hover {
+    background-color: #2980b9;
+  }
+  
+  .errorText {
+    color: red;
+  }
+  .container {
+    padding: 20px;
+  }
+  
+  .orderList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .orderCard {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  .orderHeader {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .orderItems {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .orderItemRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .foodItem {
+    flex: 1;
+  }
+  
+  .itemActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #005a9e;
+  }
+  
+  .statusBadge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .booked {
+    background-color: #d0e7ff;
+    color: #005a9e;
+  }
+  
+  .ready {
+    background-color: #ffe7a0;
+    color: #996600;
+  }
+  
+  .served {
+    background-color: #c6f6d5;
+    color: #006644;
+  }
+  
+  .cancelled {
+    background-color: #ffd6d6;
+    color: #cc0000;
+  }
+  
+  .errorText {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .orderId {
+    background-color: #52b2f7;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 8px;
+  }
+    

@@ -1,89 +1,11 @@
-@import '~@fluentui/react/dist/sass/References.scss';
-
 .orderHistory {
-  overflow: hidden;
-  padding: 1em;
-  color: "[theme:bodyText, default: #323130]";
-  color: var(--bodyText);
-  &.teams {
-    font-family: $ms-font-family-fallbacks;
-  }
-}
-
-.welcome {
-  text-align: center;
-}
-
-.welcomeImage {
-  width: 100%;
-  max-width: 420px;
-}
-
-.links {
-  a {
-    text-decoration: none;
-    color: "[theme:link, default:#03787c]";
-    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
-
-    &:hover {
-      text-decoration: underline;
-      color: "[theme:linkHovered, default: #014446]";
-      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
-    }
-  }
-}
-
-.container {
   padding: 20px;
 }
 
-.errorText {
-  color: red;
-  font-weight: bold;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.headerRow {
-  background-color: #f0f0f0;
-}
-
-.th, .td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.statusBadge {
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-weight: bold;
-}
-
-.booked {
-  background-color: lightblue;
-}
-
-.ready {
-  background-color: lightgreen;
-}
-
-.served {
-  background-color: lightgray;
-}
-
-.cancelled {
-  background-color: lightcoral;
-}
-
 .divider {
-  margin: 20px 0;
-  border: 0;
-  border-top: 1px solid #ccc;
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid #ddd;
 }
 
 .errorText {
@@ -91,52 +13,53 @@
   font-weight: bold;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
+.orderGroup {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  border: 1px solid #eee;
 }
 
-.th, .td {
-  padding: 10px;
-  border: 1px solid #ddd;
+.orderCard {
+  background: white;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
-.headerRow {
-  background-color: #f4f4f4;
-}
-
+/* Status Badges */
 .statusBadge {
   padding: 4px 8px;
-  background-color: #eee;
-  border-radius: 4px;
-}
-.statusBadge {
-  padding: 5px 10px;
   border-radius: 12px;
+  font-size: 12px;
   font-weight: bold;
-  color: white;
-  text-align: center;
+  margin-left: 8px;
+  display: inline-block;
 }
 
 .booked {
-  background-color: #3498db; /* Yellow */
+  background-color: #d0ebff;
+  color: #095aba;
 }
 
 .ready {
- 
-  background-color: #f39c12; /* Green */
+  background-color: #fff3bf;
+  color: #996c00;
 }
 
 .served {
-  background-color: #2ecc71;
-   /* Blue */
+  background-color: #d3f9d8;
+  color: #2b8a3e;
 }
 
 .cancelled {
-  background-color: #e74c3c; /* Red */
+  background-color: #ffe3e3;
+  color: #c92a2a;
 }
 
 .default {
-  background-color: #bdc3c7; /* Gray */
+  background-color: #e9ecef;
+  color: #495057;
 }
-

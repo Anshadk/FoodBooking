@@ -18,7 +18,12 @@ export interface OrderItem {
 }
 
 const OrderHistory: React.FC<IOrderHistoryProps> = (props) => {
-  const { description, userDisplayName,  bookingList, currentUser } = props;
+  const {
+    description,
+    userDisplayName,
+    bookingList,
+    currentUser
+  } = props;
 
   const [orders, setOrders] = useState<OrderItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,8 +44,13 @@ const OrderHistory: React.FC<IOrderHistoryProps> = (props) => {
         .expand("UserEmail")
         .filter(`UserEmail/EMail eq '${currentUser.email}'`)
         .top(50)();
-  
-      const myOrders: OrderItem[] = items.map((item) => ({
+        
+      // Sort orders in descending booking time
+      const sortedOrders = items.sort((a, b) => {
+        return new Date(b.BookingTime).getTime() - new Date(a.BookingTime).getTime();
+      });
+
+      const myOrders: OrderItem[] = sortedOrders.map((item) => ({
         Id: item.Id,
         Title: item.Title,
         Quantity: item.Quantity,
@@ -48,14 +58,7 @@ const OrderHistory: React.FC<IOrderHistoryProps> = (props) => {
         OrderId: item.OrderId,
         BookingTime: item.BookingTime,
       }));
-  
-      // Sort the orders by BookingTime in descending order
-      myOrders.sort((a, b) => {
-        const dateA = new Date(a.BookingTime);
-        const dateB = new Date(b.BookingTime);
-        return dateB.getTime() - dateA.getTime(); // Descending order
-      });
-  
+
       setOrders(myOrders);
     } catch (error: unknown) {
       const err = error as Error;
@@ -65,8 +68,17 @@ const OrderHistory: React.FC<IOrderHistoryProps> = (props) => {
       setIsLoading(false);
     }
   };
-  
 
+  // Group orders by OrderId
+  const groupedOrders = orders.reduce((acc, order) => {
+    if (!acc[order.OrderId]) {
+      acc[order.OrderId] = [];
+    }
+    acc[order.OrderId].push(order);
+    return acc;
+  }, {} as { [key: string]: OrderItem[] });
+
+  // Get dynamic color for status
   const getStatusClass = (status: string): string => {
     switch (status.toLowerCase()) {
       case "booked":
@@ -88,6 +100,7 @@ const OrderHistory: React.FC<IOrderHistoryProps> = (props) => {
       <p>{description}</p>
 
       <p>Welcome, <strong>{userDisplayName}</strong>! 👋</p>
+     
 
       <hr className={styles.divider} />
 
@@ -95,36 +108,24 @@ const OrderHistory: React.FC<IOrderHistoryProps> = (props) => {
       {errorMessage && <p className={styles.errorText}>{errorMessage}</p>}
       {!isLoading && orders.length === 0 && <p>No orders found.</p>}
 
-      {orders.length > 0 && (
-        <table className={styles.table}>
-          <thead>
-            <tr className={styles.headerRow}>
-              <th className={styles.th}>Order ID</th>
-              <th className={styles.th}>Food Item</th>
-              <th className={styles.th}>Qty</th>
-              <th className={styles.th}>Status</th>
-              <th className={styles.th}>Booking Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order.Id}>
-                <td className={styles.td}>{order.OrderId}</td>
-                <td className={styles.td}>{order.Title}</td>
-                <td className={styles.td}>{order.Quantity}</td>
-                <td className={styles.td}>
-                  <span className={`${styles.statusBadge} ${getStatusClass(order.Status)}`}>
-                    {order.Status}
-                  </span>
-                </td>
-                <td className={styles.td}>
-                  {order.BookingTime ? new Date(order.BookingTime).toLocaleDateString() : "N/A"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      {Object.keys(groupedOrders).map(orderId => (
+        <div key={orderId} className={styles.orderGroup}>
+          <h3>🛒 Order ID: {orderId}</h3>
+          {groupedOrders[orderId].map(order => (
+            <div key={order.Id} className={styles.orderCard}>
+              <div><strong>Food Item:</strong> {order.Title}</div>
+              <div><strong>Quantity:</strong> {order.Quantity}</div>
+              <div>
+                <strong>Status:</strong> 
+                <span className={`${styles.statusBadge} ${getStatusClass(order.Status)}`}>
+                  {order.Status}
+                </span>
+              </div>
+              <div><strong>Booking Date:</strong> {order.BookingTime ? new Date(order.BookingTime).toLocaleDateString() : "N/A"}</div>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
