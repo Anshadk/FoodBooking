@@ -14,6 +14,10 @@
 }
 
 .orderGroup {
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
   margin-bottom: 24px;
   padding: 16px;
   background-color: #f7f7f7;
@@ -22,6 +26,7 @@
 }
 
 .orderCard {
+  
   background: white;
   padding: 12px;
   margin-top: 10px;
