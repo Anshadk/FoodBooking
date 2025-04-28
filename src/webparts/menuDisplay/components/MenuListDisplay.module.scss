@@ -97,3 +97,136 @@
     font-size: 16px;
   }
   
+  .container {
+    padding: 20px;
+  }
+  
+  .heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .menuTitle {
+    margin: 20px 0;
+    font-size: 20px;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .cardContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  @media (max-width: 768px) {
+    .cardContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cardContainer {
+      grid-template-columns: 1fr;
+    }
+  }
+    
+  
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .cardContent {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 18px;
+    margin: 10px 0 5px;
+  }
+  
+  .details {
+    color: gray;
+    font-size: 14px;
+  }
+  
+  .price {
+    font-weight: bold;
+    margin: 8px 0;
+  }
+  
+  .addButton {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .addButton:hover {
+    background-color: #005a9e;
+  }
+  
+  .orderSummary {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+  }
+  
+  .orderItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .totalPrice {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .placeOrderButton {
+    margin-top: 20px;
+    background: #28a745;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .placeOrderButton:hover {
+    background: #218838;
+  }
+  
+  .removeButton {
+    background: transparent;
+    color: #dc3545;
+    border: none;
+    cursor: pointer;
+  }
+  
